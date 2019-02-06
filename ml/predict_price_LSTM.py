@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 CONST_TRAINING_SEQUENCE_LENGTH = 60
 CONST_TESTING_CASES = 5
-#change
 
 def dataNormalization(data):
     return [(datum - data[0]) / data[0] for datum in data]
