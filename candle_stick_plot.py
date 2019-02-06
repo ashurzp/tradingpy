@@ -1,7 +1,7 @@
-import pandas
 import matplotlib
-import mpl_finance
 import matplotlib.pyplot as plt
+import mpl_finance
+import pandas
 
 matplotlib.style.use('ggplot')
 
@@ -36,4 +36,4 @@ def stockPricePlot(ticker):
     plt.show()
 
 
-stockPricePlot('AAPL')
+stockPricePlot('AAWW')

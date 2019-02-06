@@ -55,10 +55,10 @@ def get_us_stocks():
         try:
             print('Intraday', i, '/', len(tickers))
             stockPriceIntraday(ticker, folder='./Data/IntradayUS')
-            time.sleep(2)
+            time.sleep(12)
         except:
             pass
     print('Intraday for all stock got.')
 
-get_us_stocks()
 
+get_us_stocks()

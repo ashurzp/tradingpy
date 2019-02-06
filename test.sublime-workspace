@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"CON",
+				"CONST_TRAINING_SEQUENCE_LENGTH\tstatement"
+			],
+			[
+				"data",
+				"dataSegment\tstatement"
+			],
+			[
+				"Y_",
+				"Y_Testing_Base\tstatement"
+			],
+			[
+				"CONST_",
+				"CONST_TRAINING_SEQUENCE_LENGTH\tstatement"
+			],
+			[
+				"CO",
+				"CONST_TESTING_CASES\tstatement"
+			],
+			[
+				"dat",
+				"dateSegment\tstatement"
+			],
+			[
+				"st",
+				"style\tmodule"
+			],
+			[
+				"su",
+				"subplot1\tstatement"
+			],
+			[
+				"sub",
+				"subplot2\tstatement"
+			],
+			[
+				"fi",
+				"finance"
+			],
+			[
+				"ma",
+				"matplotlib\tmodule"
+			],
+			[
 				"da",
 				"dateToday\tstatement"
 			],
@@ -19,7 +63,7 @@
 			"file": "version.py",
 			"settings":
 			{
-				"buffer_size": 30,
+				"buffer_size": 31,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -28,8 +72,16 @@
 			"file": "candle_stick_plot.py",
 			"settings":
 			{
-				"buffer_size": 1183,
+				"buffer_size": 1188,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ml/predict_price_LSTM.py",
+			"settings":
+			{
+				"buffer_size": 2151,
 				"line_ending": "Windows"
 			}
 		}
@@ -61,6 +113,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"inst",
+				"GitHub: Open Starred Gist in Browser"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -94,7 +150,9 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Work/workspace_py/tradingpy"
+		"/D/Work/workspace_py/tradingpy",
+		"/D/Work/workspace_py/tradingpy/Data",
+		"/D/Work/workspace_py/tradingpy/ml"
 	],
 	"file_history":
 	[
@@ -147,7 +205,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -156,7 +214,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 30,
+						"buffer_size": 31,
 						"regions":
 						{
 						},
@@ -186,7 +244,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -195,25 +253,79 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1183,
+						"buffer_size": 1188,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								805,
-								805
+								112,
+								112
 							]
 						],
 						"settings":
 						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ml/predict_price_LSTM.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2151,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								341,
+								341
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -255,7 +367,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 177.0
+		"height": 403.0
 	},
 	"output.find_results":
 	{
@@ -303,7 +415,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 267.0,
+	"side_bar_width": 218.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -1,12 +1,13 @@
-import pandas
-import numpy
-from keras.layer.core import Dense, Activation, Dropout
-from keras.layer.recurrent import LSTM
-from keras.models import Sequential
 import matplotlib.pyplot as plt
+import numpy
+import pandas
+from keras.layers.core import Activation, Dense, Dropout
+from keras.layers.recurrent import LSTM
+from keras.models import Sequential
 
 CONST_TRAINING_SEQUENCE_LENGTH = 60
 CONST_TESTING_CASES = 5
+
 
 def dataNormalization(data):
     return [(datum - data[0]) / data[0] for datum in data]
@@ -18,8 +19,8 @@ def dataDeNormalization(data, base):
 
 def getDeppLearningData(ticker):
     # Step 1. Load data
-    data = panads.read_csv('./Data/IntradayUS/' +
-                           ticker + '.csv')['close'].tolist()
+    data = pandas.read_csv('./Data/IntradayUS/'
+                           + ticker + '.csv')['close'].tolist()
 
     # Step 2. Building training data
     dataTraining = []
@@ -35,8 +36,8 @@ def getDeppLearningData(ticker):
     X_Testing = []
     Y_Testing_Base = []
     for i in range(CONST_TESTING_CASES, 0, -1):
-        dataSegment = data[-(i + 1) * CONST_TRAINING_SEQUENCE_LENGTH:-
-                           i * CONST_TRAINING_SEQUENCE_LENGTH]
+        dataSegment = data[-(i + 1) * CONST_TRAINING_SEQUENCE_LENGTH:
+                           - i * CONST_TRAINING_SEQUENCE_LENGTH]
         Y_Testing_Base.append(dataSegment[0])
         X_Testing.append(dataNormalization(dataSegment))
     Y_Testing = data[-CONST_TESTING_CASES * CONST_TRAINING_SEQUENCE_LENGTH:]
@@ -50,23 +51,72 @@ def getDeppLearningData(ticker):
     X_Testing = numpy.reshape(
         X_Testing, (X_Testing.shape[0], X_Testing.shape[1], 1))
 
-    return X_Training, Y_Training, X_Testing, Y_Testing
+    return X_Training, Y_Training, X_Testing, Y_Testing, Y_Testing_Base
+
+
+def predict(model, X):
+    predictionNormalized = []
+    for i in range(len(X)):
+        data = X[i]
+        result = []
+        for j in range(CONST_TRAINING_SEQUENCE_LENGTH):
+            predicted = model.predict(data[numpy.newaxis, :, :])[0, 0]
+            result.append(predicted)
+            data = data[1:]
+            data = numpy.insert(
+                data, [CONST_TRAINING_SEQUENCE_LENGTH - 1], predicted, axis=0)
+        predictionNormalized.append(result)
+    return predictionNormalized
+
+
+def plotResult(Y_hat, Y):
+    plt.plot(Y)
+    for i in range(len(Y_hat)):
+        padding = [None for _ in range(i * CONST_TRAINING_SEQUENCE_LENGTH)]
+        plt.plot(padding + Y_hat[i])
+
+    plt.show()
 
 
 def predictLSTM(ticker):
     # Step 1. Load data
-    X_Training, Y_Training, X_Testing, Y_Testing = getDeppLearningData(ticker)
-    print(Y_Testing)
+    X_Training, Y_Training, X_Testing, Y_Testing, Y_Testing_Base = getDeppLearningData(
+        ticker)
 
     # Step 2. Build model
+    model = Sequential()
+    model.add(LSTM(
+        input_dim=1,
+        output_dim=50,
+        return_sequences=True
+    ))
+    model.add(Dropout(0.2))
+    model.add(LSTM(
+        200,
+        return_sequences=False
+    ))
+    model.add(Dropout(0.2))
+    model.add(Dense(output_dim=1))
+    model.add(Activation('linear'))
+    model.compile(loss='mse', optimizer='rmsprop')
 
     # Step 3. Train model
+    model.fit(X_Training, Y_Training, batch_size=512,
+              nb_epoch=5, validation_split=0.05)
 
     # Step 4. Predict
+    print(X_Testing)
+    predictionNormalized = predict(model, X_Testing)
+    print(predictionNormalized)
 
     # Step 5. De-nomalize
+    predictions = []
+    for i, row in enumerate(predictionNormalized):
+        predictions.append(dataDeNormalization(row, Y_Testing_Base[i]))
 
     # Step 6. Plot
+    print(predictions)
+    plotResult(predictions, Y_Testing)
 
 
-predictLSTM(ticker='AAPL')
+predictLSTM(ticker='AAWW')

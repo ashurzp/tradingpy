@@ -24,7 +24,7 @@ def stockPriceIntraday(ticker, folder):
 
 
 def get_cn_stocks():
-        # Step 1. get tickets online
+    # Step 1. get tickets online
     tickersRawData = tushare.get_stock_basics()
     tickers = tickersRawData.index.tolist()
     # Step 2. Save the ticker list to a local file
@@ -40,5 +40,6 @@ def get_cn_stocks():
         except:
             pass
     print('Intraday for all stock got.')
+
 
 get_cn_stocks()
