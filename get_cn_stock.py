@@ -1,7 +1,8 @@
-import pandas
 import datetime
-import tushare
 import os
+
+import pandas
+import tushare
 
 
 def stockPriceIntraday(ticker, folder):
@@ -37,7 +38,7 @@ def get_cn_stocks():
         try:
             print('Intraday', i, '/', len(tickers))
             stockPriceIntraday(ticker, folder='./Data/IntradayCN')
-        except:
+        except Exception:
             pass
     print('Intraday for all stock got.')
 

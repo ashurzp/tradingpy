@@ -1,10 +1,10 @@
-import requests
-import pandas
-import io
 import datetime
+import io
 import os
 import time
 
+import pandas
+import requests
 
 # API KEY: WRP4CN95OUBC57X5
 
@@ -56,7 +56,7 @@ def get_us_stocks():
             print('Intraday', i, '/', len(tickers))
             stockPriceIntraday(ticker, folder='./Data/IntradayUS')
             time.sleep(12)
-        except:
+        except Exception:
             pass
     print('Intraday for all stock got.')
 
