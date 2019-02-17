@@ -19,7 +19,7 @@ def dataDeNormalization(data, base):
 
 def getDeppLearningData(ticker):
     # Step 1. Load data
-    data = pandas.read_csv('./Data/IntradayUS/'
+    data = pandas.read_csv('../Data/IntradayUS/'
                            + ticker + '.csv')['close'].tolist()
 
     # Step 2. Building training data
